@@ -1,0 +1,13 @@
+{
+  "name": "dati-gov-it",
+  "version": "0.1.0",
+  "source": "https://www.dati.gov.it/opendata/api/3",
+  "spec_type": "ckan",
+  "bins": {
+    "cli": "dati-gov-it-cli",
+    "mcp": "dati-gov-it-mcp"
+  },
+  "skill": "SKILL.md",
+  "generated_by": "manual",
+  "pp_compatible": true
+}
