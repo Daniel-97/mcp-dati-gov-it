@@ -2,7 +2,7 @@
 
 CLI and MCP server for the Italian government open data catalog ([dati.gov.it](https://dati.gov.it)).
 
-Compatible with [Printing Press](https://printingpress.dev).
+Built with [Printing Press](https://printingpress.dev).
 
 ## Installation
 
