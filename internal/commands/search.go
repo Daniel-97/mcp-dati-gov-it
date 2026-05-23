@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"strings"
+	"time"
 
 	"github.com/daniel-97/mcp-dati-gov-it/internal/client"
 	"github.com/spf13/cobra"
@@ -64,6 +65,23 @@ func NewSearchCmd(c *client.Client) *cobra.Command {
 	return cmd
 }
 
+// formatDate converte una stringa ISO 8601 in formato leggibile (YYYY-MM-DD).
+// Restituisce la stringa originale se il parsing fallisce.
+func formatDate(s string) string {
+	if s == "" {
+		return "n/a"
+	}
+	t, err := time.Parse(time.RFC3339, s)
+	if err != nil {
+		// fallback: restituisce i primi 10 caratteri (YYYY-MM-DD)
+		if len(s) >= 10 {
+			return s[:10]
+		}
+		return s
+	}
+	return t.Format("2006-01-02")
+}
+
 func printSearchOutput(w io.Writer, out *SearchOutput, agent bool) error {
 	if agent {
 		return json.NewEncoder(w).Encode(out)
@@ -74,8 +92,9 @@ func printSearchOutput(w io.Writer, out *SearchOutput, agent bool) error {
 		for _, t := range d.Tags {
 			tags = append(tags, t.Name)
 		}
-		fmt.Fprintf(w, "  [%s]\n  Titolo: %s\n  Tag: %s\n\n",
-			d.ID, d.Title, strings.Join(tags, ", "))
+		published := formatDate(d.MetadataCreated)
+		fmt.Fprintf(w, "  [%s]\n  Titolo:      %s\n  Pubblicato:  %s\n  Tag:         %s\n\n",
+			d.ID, d.Title, published, strings.Join(tags, ", "))
 	}
 	return nil
 }

@@ -28,6 +28,7 @@ type Dataset struct {
 	Tags             []Tag         `json:"tags"`
 	Organization     *Organization `json:"organization"`
 	Resources        []Resource    `json:"resources"`
+	MetadataCreated  string        `json:"metadata_created"`
 	MetadataModified string        `json:"metadata_modified"`
 	LicenseTitle     string        `json:"license_title"`
 }

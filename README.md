@@ -11,6 +11,18 @@ go install github.com/daniel-97/mcp-dati-gov-it/cmd/dati-gov-it-cli@latest
 go install github.com/daniel-97/mcp-dati-gov-it/cmd/dati-gov-it-mcp@latest
 ```
 
+## Build from Source
+
+```bash
+git clone https://github.com/daniel-97/mcp-dati-gov-it.git
+cd mcp-dati-gov-it
+
+go build -o dati-gov-it-cli ./cmd/dati-gov-it-cli/
+go build -o dati-gov-it-mcp ./cmd/dati-gov-it-mcp/
+```
+
+The binaries will be available in the current directory as `./dati-gov-it-cli` and `./dati-gov-it-mcp`.
+
 ## Quick Start
 
 ```bash
