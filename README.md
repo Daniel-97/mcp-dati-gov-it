@@ -32,6 +32,66 @@ dati-gov-it-cli download <dataset-id> <resource-id> --output data.csv
 dati-gov-it-cli orgs --details
 ```
 
+## Examples
+
+### Search datasets
+
+Search across the full catalog by keyword:
+
+```bash
+./dati-gov-it-cli search "qualità aria"
+```
+
+Filter by tag or organization, and increase the number of results:
+
+```bash
+./dati-gov-it-cli search "ambiente" --tags aria --rows 20
+./dati-gov-it-cli search "bilancio" --org comune-di-roma
+```
+
+### Show dataset details
+
+Retrieve full metadata for a dataset (title, description, license, resources):
+
+```bash
+./dati-gov-it-cli show <dataset-id>
+```
+
+### Download a resource
+
+Download a specific file attached to a dataset. Use `show` first to get the resource ID:
+
+```bash
+./dati-gov-it-cli show <dataset-id>
+./dati-gov-it-cli download <dataset-id> <resource-id> --output data.csv
+```
+
+If `--output` is omitted, the file is saved in the current directory using the resource name.
+
+### List organizations
+
+List all public administrations that publish data on dati.gov.it:
+
+```bash
+./dati-gov-it-cli orgs
+```
+
+Include title and description for each organization:
+
+```bash
+./dati-gov-it-cli orgs --details
+```
+
+### Agent / JSON output
+
+Every command supports `--agent` to output structured JSON, useful for scripting or AI agents:
+
+```bash
+./dati-gov-it-cli search "istruzione" --agent
+./dati-gov-it-cli show <dataset-id> --agent
+./dati-gov-it-cli orgs --agent
+```
+
 ## MCP Configuration (Claude Desktop)
 
 ```json
